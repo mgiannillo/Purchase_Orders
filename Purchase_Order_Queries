@@ -1,14 +1,16 @@
 
 ---- A look at Purchase Order volume by vendor ----
 SELECT Vendor,
+FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Total_Spending,
 COUNT(PO_Number) AS PO_Count
 FROM po_data..PO_Data
 GROUP BY Vendor
-ORDER BY PO_Count DESC
+ORDER BY Total_Spending DESC
 
 ---- A look at Purchase Order volume by Spend Type ----
 SELECT Type_of_Spend,
-FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Total_Spending
+FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Total_Spending,
+COUNT(PO_Number) AS PO_Count
 FROM po_data..PO_Data
 GROUP BY Type_of_Spend
 ORDER BY Total_Spending DESC
@@ -31,7 +33,7 @@ FROM po_data..PO_Data
 GROUP BY Vendor, Brand
 ORDER BY Vendor
 
----- Make Column for Q1-Q4 and look at spending throughout the year ----
+---- Make Column for Q1-Q4 and Month to look at spending throughout the year ----
 
 SELECT 
 Period,
@@ -51,7 +53,7 @@ FROM po_data..PO_Data) AS case_table
 GROUP BY Month, Period
 ORDER BY Month, Total_PO_Spending 
 
----- Grand Totals ----
+---- Totals ----
 SELECT
 FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Committed_YTD,
 FORMAT(SUM(CAST(Invoice_Amount AS INT)), 'C') AS Invoiced_YTD,
