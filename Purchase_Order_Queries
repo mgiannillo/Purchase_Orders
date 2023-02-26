@@ -51,7 +51,7 @@ FROM po_data..PO_Data) AS case_table
 GROUP BY Month, Period
 ORDER BY Month, Total_PO_Spending 
 
----- Totals ----
+---- Grand Totals ----
 SELECT
 FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Committed_YTD,
 FORMAT(SUM(CAST(Invoice_Amount AS INT)), 'C') AS Invoiced_YTD,
