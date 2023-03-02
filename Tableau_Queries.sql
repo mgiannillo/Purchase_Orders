@@ -2,7 +2,7 @@
 ---- Tableau Query "Total Spending VS. Forecast" ----
 SELECT 
 Period,
-FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Total_PO_Spending
+FORMAT(SUM(PO_Amount), 'C') AS Total_PO_Spending
 FROM (SELECT 
 *,
 CASE 
@@ -19,7 +19,7 @@ ORDER BY Total_PO_Spending
 ---- Tableau Query "Distribution of Spending by Category ----
 
 SELECT Type_of_Spend,
-FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Total_Spending
+FORMAT(SUM(PO_Amount), 'C') AS Total_Spending
 FROM po_data..PO_Data
 GROUP BY Type_of_Spend
 ORDER BY Total_Spending DESC
@@ -27,7 +27,7 @@ ORDER BY Total_Spending DESC
 --- Tableau Query "Total Spending by Brand ----
 
 SELECT Brand,
-FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Total_Spending
+FORMAT(SUM(PO_Amount), 'C') AS Total_Spending
 FROM po_data..PO_Data
 GROUP BY Brand
 ORDER BY Total_Spending DESC
@@ -35,7 +35,7 @@ ORDER BY Total_Spending DESC
 ---- Tableau Query "Spend Type Totals by Brand" ----
 
 SELECT Brand, Type_of_Spend, 
-FORMAT(SUM(CAST(PO_Amount AS INT)), 'C') AS Comittment
+FORMAT(SUM(PO_Amount), 'C') AS Comittment
 FROM po_data..PO_Data
 GROUP BY Brand, Type_of_Spend
 ORDER BY Brand, Type_of_Spend
