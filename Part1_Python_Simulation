@@ -77,7 +77,7 @@ purchase_orders['Brand'] = [random.choice(brands) for item in purchase_orders['B
 
 ##Populate PO_Number columns with random number between 1,000,000 and 9,999,999 to assign a 6 digit identifier code to each observation
 
-purchase_orders['PO_Number'] = [random.randint(10000000,9999999) for item in purchase_orders['PO_Number']]
+purchase_orders['PO_Number'] = [random.randint(1000000,9999999) for item in purchase_orders['PO_Number']]
 
 ##Populate PO_Amount column with random integer between 200 and 100,000 to simulate the price of each purchase order observation
 
